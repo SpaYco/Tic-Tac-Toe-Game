@@ -1,49 +1,48 @@
-# Project Name
-
+# Tic-Tac-Toe Project
+We built a tic-tac-toe game on the command line where two human players can play against each other and the board is displayed in between turns.
 
 # What it does
-
+Two human players can play to Tic-Tac-Toe board game
 
 # Built With
-
-# Live Demo
-[Live Demo Link]()
+Ruby
 
 # Getting Started
 To get a local copy up and running follow these simple example steps.
 
-Clone the project unto your local machine
-cd into the folder, find the index.html file and open it
+Clone the project unto your local machine cd to the folder run "main.rb" on your terminal
 
 # Prerequisites
-- Get your browsers up to date
+- Get ruby latest version installed
 
 # Install
 - Install VSCode or any code editor you like
 - Install Node JS and nmp(most recents versions)
-- Run this command on your terminal in order to install stylelint: npm install stylelint stylelint-config-recommended --save-dev 
 
-# Run tests
-- Test the css by typing the command: npx stylelint .
-- Go to http://validator.w3.org/ , upload the index.html file to test it.
+## Authors
 
-# Deployment
-- Get an online web hosting
-- Upload all the files in the htdocs folder of your domain
-- Access your domain name in browser
+👤 **SpaYco**
 
-# Author
+- Github: [@SpaYco](https://github.com/SpaYco)
+- Twitter: [@iSpaYco](https://twitter.com/iSpaYco)
+- Linkedin: [Aziz Mejri](https://www.linkedin.com/in/spayco/)
 
-👤 Javier Oriol Correas Sanchez Cuesta
+👤 **Javier Oriol Correas Sanchez Cuesta**
 
-- Github: [@githubhandle](https://github.com/javitocor)
-- Twitter: [@twitterhandle](https://twitter.com/JavierCorreas4)
-- Linkedin: [linkedin](https://www.linkedin.com/in/javier-correas-sanchez-cuesta-15289482/)
+- Github: [@javitocor](https://github.com/javitocor)
+- Twitter: [@JavierCorreas4](https://twitter.com/JavierCorreas4)
+- Linkedin: [Javier Oriol Correas Sanchez Cuesta](https://www.linkedin.com/in/javier-correas-sanchez-cuesta-15289482/ )
 
 # 🤝 Contributing
-Contributions, issues and feature requests are welcome!
+Contributions, issues and feature requests are welcome! Start by:
 
-Feel free to check the [issues page]().
+- Forking the project
+- Cloning the project to your local machine
+- cd into the project directory
+- Run git checkout -b your-branch-name
+- Make your contributions
+- Push your branch up to your forked repository
+- Open a Pull Request with a detailed description to the development branch of the original project for a review
 
 # Attributions and Credit
 🚀
