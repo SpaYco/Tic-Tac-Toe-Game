@@ -1,2 +1,48 @@
 #!/usr/bin/env ruby
-puts "Hello world!"
+class Game
+    def initialize(player1, player2)
+        @player1 = player1
+        @player2 = player2
+    end
+    def start
+        $moves = {
+        "a1" => "a1",
+        "a2" => "a2",
+        "a3" => "a3",
+        "b1" => "b1", 
+        "b2" => "b2",
+        "b3" => "b3",
+        "c1" => "c1",
+        "c2" => "c2",
+        "c3" => "c3"
+        }
+        puts "Welcome #{@player1} and #{@player2}"
+        puts "here's your current board"
+        puts "----------"
+        puts "|#{$moves["a1"]}|#{$moves["a2"]}|#{$moves["a3"]}|"
+        puts "----------"
+        puts "|#{$moves["b1"]}|#{$moves["b2"]}|#{$moves["b3"]}|"
+        puts "----------"
+        puts "|#{$moves["c1"]}|#{$moves["c2"]}|#{$moves["c3"]}|"
+        puts "----------"
+    end
+    def add(player, move)
+        $moves[move] = "X" if player == @player1 
+        $moves[move] = "O" if player == @player2
+        puts "please enter a valid move" if player != @player1 && player != @player2
+        puts "here's your current board"
+        puts "----------"
+        puts "|#{$moves["a1"]}|#{$moves["a2"]}|#{$moves["a3"]}|"
+        puts "----------"
+        puts "|#{$moves["b1"]}|#{$moves["b2"]}|#{$moves["b3"]}|"
+        puts "----------"
+        puts "|#{$moves["c1"]}|#{$moves["c2"]}|#{$moves["c3"]}|"
+        puts "----------"
+        #if any player wins
+        puts "congrats #{player}, you won!"
+    end
+end
+
+new_game = Game.new("SpaYco", "Javier")
+new_game.start
+new_game.add("SpaYco", "a1")
