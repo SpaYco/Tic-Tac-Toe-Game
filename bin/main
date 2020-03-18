@@ -6,7 +6,9 @@ class Game
     @player2 = player2
     start
   end
-
+  def restart 
+    start
+  end
   def start
     $moves = {
       'a1' => 'a1',
@@ -33,21 +35,37 @@ class Game
     current_player = @player1
     $game_over = false
     while $game_over == false 
-      puts "#{current_player} enter your move : "
+      print "#{current_player} enter your move : "
       current_move = gets.chomp      
       add(current_player, current_move)
-      $moves_played += 1
-      current_player == @player1 ? current_player = @player2 : current_player = @player1
+      current_check = check
+      $moves_played += 1 if $possible == true
+      if check == true
+        puts "congrats #{current_player}, you've won the game after #{$moves_played} moves"
+        break
+      elsif check == "tie"
+        puts "game over, it's a tie!"
+        break
+      else
+        puts "great move!"
+      end
+      current_player == @player1 ? current_player = @player2 : current_player = @player1 if $possible == true
     end
-
+    print "would you like to play another game? (y/n) : "
+    answer = gets.chomp
+    answer == "y" ? restart : (puts "see you next time, goodbye!")
   end
 
   private
 
   def add(player, move)
-    $moves[move] = 'X' if player == @player1
-    $moves[move] = 'O' if player == @player2
-    puts 'Please enter a valid move' if player != @player1 && player != @player2
+    $possible = true
+    $possible = false if  $moves[move] == "X" || $moves[move] == "O"
+    if $possible == true 
+      $moves[move] = 'X' if player == @player1
+      $moves[move] = 'O' if player == @player2
+    end
+    puts 'Please enter a valid move' if $possible == false
     puts "Here's your current board"
     puts '----------'
     puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
@@ -60,7 +78,16 @@ class Game
 
   def check
     win = [[$moves['a1'],$moves['a2'],$moves['a3']], [$moves['b1'],$moves['b2'],$moves['b3']], [$moves['c1'],$moves['c2'],$moves['c3']], [$moves['a1'],$moves['b1'],$moves['c1']], [$moves['a2'],$moves['b2'],$moves['c2']], [$moves['a3'],$moves['b3'],$moves['c3']], [$moves['a1'],$moves['b2'],$moves['c3']], [$moves['a3'],$moves['b2'],$moves['c1']]]
-
+    status = false
+    if $moves_played < 9
+      win.each do |k|
+        status = true if k.all? {|v| v == "X"}
+        status = true if k.all? {|v| v == "O"}
+      end
+    else
+      status = "tie"
+    end
+    return status
   end
 end
 # rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength
