@@ -1,5 +1,90 @@
 #!/usr/bin/env ruby
 # rubocop:disable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+class String
+  def black
+    "\e[30m#{self}\e[0m"
+  end
+
+  def red
+    "\e[31m#{self}\e[0m"
+  end
+
+  def green
+    "\e[32m#{self}\e[0m"
+  end
+
+  def brown
+    "\e[33m#{self}\e[0m"
+  end
+
+  def blue
+    "\e[34m#{self}\e[0m"
+  end
+
+  def magenta
+    "\e[35m#{self}\e[0m"
+  end
+
+  def cyan
+    "\e[36m#{self}\e[0m"
+  end
+
+  def gray
+    "\e[37m#{self}\e[0m"
+  end
+
+  def bg_black
+    "\e[40m#{self}\e[0m"
+  end
+
+  def bg_red
+    "\e[41m#{self}\e[0m"
+  end
+
+  def bg_green
+    "\e[42m#{self}\e[0m"
+  end
+
+  def bg_brown
+    "\e[43m#{self}\e[0m"
+  end
+
+  def bg_blue
+    "\e[44m#{self}\e[0m"
+  end
+
+  def bg_magenta
+    "\e[45m#{self}\e[0m"
+  end
+
+  def bg_cyan
+    "\e[46m#{self}\e[0m"
+  end
+
+  def bg_gray
+    "\e[47m#{self}\e[0m"
+  end
+
+  def bold
+    "\e[1m#{self}\e[22m"
+  end
+
+  def italic
+    "\e[3m#{self}\e[23m"
+  end
+
+  def underline
+    "\e[4m#{self}\e[24m"
+  end
+
+  def blink
+    "\e[5m#{self}\e[25m"
+  end
+
+  def reverse_color
+    "\e[7m#{self}\e[27m"
+  end
+end
 class Game
   def initialize(player1, player2)
     @player1 = player1
@@ -25,8 +110,11 @@ class Game
     }
     $moves_played = 0
     puts "Welcome #{@player1} and #{@player2}"
+    sleep 1.5
     puts "Let's start the game"
+    sleep 1.5
     puts "Here's your current board"
+    sleep 0.15
     puts '----------'
     puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
     puts '----------'
@@ -34,21 +122,24 @@ class Game
     puts '----------'
     puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
     puts '----------'
+    sleep 1.5
     current_player = @player1
     $game_over = false
     while $game_over == false
       print "#{current_player} enter your move : "
       current_move = gets.chomp
+      sleep 1
       add(current_player, current_move)
       $moves_played += 1 if $possible == true
+      sleep 0.35
       if check == true
-        puts "congrats #{current_player}, you've won the game after #{$moves_played} moves"
+        puts "congrats #{current_player}, you've won the game after #{$moves_played} moves".green.bg_gray
         break
       elsif check == 'tie'
         puts "game over, it's a tie!"
         break
       elsif $possible == true
-        puts 'great move!'
+        puts 'great move!'.reverse_color
       end
       current_player = current_player == @player1 ? @player2 : @player1 if $possible == true
     end
@@ -61,10 +152,10 @@ class Game
 
   def add(player, move)
     $possible = true
-    $possible = false if $moves[move] == 'X' || $moves[move] == 'O' || $moves.key?(move) == false
+    $possible = false if $moves[move] == 'X'.red || $moves[move] == 'O'.blue || $moves.key?(move) == false
     if $possible == true
-      $moves[move] = 'X' if player == @player1
-      $moves[move] = 'O' if player == @player2
+      $moves[move] = 'X'.red if player == @player1
+      $moves[move] = 'O'.blue if player == @player2
     end
     puts "Here's your current board"
     puts '----------'
@@ -74,7 +165,7 @@ class Game
     puts '----------'
     puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
     puts '----------'
-    puts 'Please enter a valid move' if $possible == false
+    puts 'Please enter a valid move'.red.bg_gray.bold if $possible == false
   end
 
   def check
@@ -82,8 +173,8 @@ class Game
     status = false
     if $moves_played < 9
       win.each do |k|
-        status = true if k.all? { |v| v == 'X' }
-        status = true if k.all? { |v| v == 'O' }
+        status = true if k.all? { |v| v == 'X'.red }
+        status = true if k.all? { |v| v == 'O'.blue }
       end
     else
       status = 'tie'
@@ -92,9 +183,12 @@ class Game
   end
 end
 # rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-print 'Player1 enter your name: '
+print 'Player1 enter your name: '.red.bg_gray
 input1 = gets.chomp
-print 'Player2 enter your name: '
+sleep 0.35
+puts ''
+print 'Player2 enter your name: '.blue.bg_gray
 input2 = gets.chomp
+sleep 0.35
 
 Game.new(input1, input2)
