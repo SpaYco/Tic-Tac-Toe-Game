@@ -4,6 +4,7 @@ class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    start
   end
 
   def start
@@ -20,7 +21,7 @@ class Game
     }
     puts "Welcome #{@player1} and #{@player2}"
     puts "Let's start the game"
-    puts "here's your current board"
+    puts "Here's your current board"
     puts '----------'
     puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
     puts '----------'
@@ -28,16 +29,24 @@ class Game
     puts '----------'
     puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
     puts '----------'
-    $game_end = false
-    # In milestone 3 we will request the players for their next move and assign a cell to each move. Keep looping until someone wins
-    # or a tie is made.
+    current_player = @player1
+    $game_over = false
+    while $game_over == false 
+      puts "#{current_player} enter your move : "
+      current_move = gets.chomp
+      add(current_player, current_move)
+      current_player == @player1 ? current_player = @player2 : current_player = @player1
+    end
+
   end
+
+  private
 
   def add(player, move)
     $moves[move] = 'X' if player == @player1
     $moves[move] = 'O' if player == @player2
-    puts 'please enter a valid move' if player != @player1 && player != @player2
-    puts "here's your current board"
+    puts 'Please enter a valid move' if player != @player1 && player != @player2
+    puts "Here's your current board"
     puts '----------'
     puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
     puts '----------'
@@ -45,7 +54,6 @@ class Game
     puts '----------'
     puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
     puts '----------'
-    # return true or false if the game ends
   end
 
   def check
@@ -59,4 +67,5 @@ puts 'Player2 enter your name: '
 input2 = gets.chomp
 
 new_game = Game.new(input1, input2)
-new_game.start
+
+
