@@ -57,7 +57,7 @@ class Game
   end
 
   def check
-    # this method checks the board each time we make a move.
+    win = [[$moves['a1'],$moves['a2'],$moves['a3']], [$moves['b1'],$moves['b2'],$moves['b3']], [$moves['c1'],$moves['c2'],$moves['c3']], [$moves['a1'],$moves['b1'],$moves['c1']], [$moves['a2'],$moves['b2'],$moves['c2']], [$moves['a3'],$moves['b3'],$moves['c3']], [$moves['a1'],$moves['b2'],$moves['c3']], [$moves['a3'],$moves['b2'],$moves['c1']]]
   end
 end
 # rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength
