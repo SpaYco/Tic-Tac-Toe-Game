@@ -19,6 +19,7 @@ class Game
       'c2' => 'c2',
       'c3' => 'c3'
     }
+    $moves_played = 0
     puts "Welcome #{@player1} and #{@player2}"
     puts "Let's start the game"
     puts "Here's your current board"
@@ -33,8 +34,9 @@ class Game
     $game_over = false
     while $game_over == false 
       puts "#{current_player} enter your move : "
-      current_move = gets.chomp
+      current_move = gets.chomp      
       add(current_player, current_move)
+      $moves_played += 1
       current_player == @player1 ? current_player = @player2 : current_player = @player1
     end
 
@@ -58,6 +60,7 @@ class Game
 
   def check
     win = [[$moves['a1'],$moves['a2'],$moves['a3']], [$moves['b1'],$moves['b2'],$moves['b3']], [$moves['c1'],$moves['c2'],$moves['c3']], [$moves['a1'],$moves['b1'],$moves['c1']], [$moves['a2'],$moves['b2'],$moves['c2']], [$moves['a3'],$moves['b3'],$moves['c3']], [$moves['a1'],$moves['b2'],$moves['c3']], [$moves['a3'],$moves['b2'],$moves['c1']]]
+
   end
 end
 # rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength
