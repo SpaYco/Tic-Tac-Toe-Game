@@ -47,7 +47,7 @@ class Game
       elsif check == 'tie'
         puts "game over, it's a tie!"
         break
-      else
+      elsif $possible == true
         puts 'great move!'
       end
       current_player = current_player == @player1 ? @player2 : @player1 if $possible == true
@@ -66,7 +66,6 @@ class Game
       $moves[move] = 'X' if player == @player1
       $moves[move] = 'O' if player == @player2
     end
-    puts 'Please enter a valid move (choose one cell without "X" or "O")' if $possible == false
     puts "Here's your current board"
     puts '----------'
     puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
@@ -75,6 +74,7 @@ class Game
     puts '----------'
     puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
     puts '----------'
+    puts 'Please enter a valid move' if $possible == false
   end
 
   def check
@@ -92,9 +92,9 @@ class Game
   end
 end
 # rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-puts 'Player1 enter your name: '
+print 'Player1 enter your name: '
 input1 = gets.chomp
-puts 'Player2 enter your name: '
+print 'Player2 enter your name: '
 input2 = gets.chomp
 
 Game.new(input1, input2)
