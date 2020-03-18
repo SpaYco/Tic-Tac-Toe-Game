@@ -1,16 +1,27 @@
 # Tic-Tac-Toe Project
 We built a tic-tac-toe game on the command line where two human players can play against each other and the board is displayed in between turns.
+It was made as a collaborative project in Ruby using OOP concepts
 
 # What it does
 Two human players can play to Tic-Tac-Toe board game
 
 # Built With
 Ruby
+VSCode
 
 # Getting Started
 To get a local copy up and running follow these simple example steps.
 
-Clone the project unto your local machine cd to the folder run "main.rb" on your terminal
+Clone the project unto your local machine cd to the folder and run "main" on your terminal
+
+# Instructions to Play
+- The game is played on a grid that's 3 squares by 3 squares.
+
+- You are X, your friend is O. Players take turns putting their marks in empty squares.
+
+- The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.
+
+- When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.
 
 # Prerequisites
 - Get ruby latest version installed
