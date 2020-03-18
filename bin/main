@@ -61,12 +61,12 @@ class Game
 
   def add(player, move)
     $possible = true
-    $possible = false if $moves[move] == 'X' || $moves[move] == 'O'
+    $possible = false if $moves[move] == 'X' || $moves[move] == 'O' || $moves.key?(move) == false
     if $possible == true
       $moves[move] = 'X' if player == @player1
       $moves[move] = 'O' if player == @player2
     end
-    puts 'Please enter a valid move' if $possible == false
+    puts 'Please enter a valid move (choose one cell without "X" or "O")' if $possible == false
     puts "Here's your current board"
     puts '----------'
     puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
