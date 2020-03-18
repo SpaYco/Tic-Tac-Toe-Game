@@ -1,9 +1,14 @@
 #!/usr/bin/env ruby
-# rubocop:disable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength
+# rubocop:disable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    start
+  end
+
+  def restart
+    start
   end
 
   def start
@@ -18,9 +23,10 @@ class Game
       'c2' => 'c2',
       'c3' => 'c3'
     }
+    $moves_played = 0
     puts "Welcome #{@player1} and #{@player2}"
     puts "Let's start the game"
-    puts "here's your current board"
+    puts "Here's your current board"
     puts '----------'
     puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
     puts '----------'
@@ -28,16 +34,39 @@ class Game
     puts '----------'
     puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
     puts '----------'
-    $game_end = false
-    # In milestone 3 we will request the players for their next move and assign a cell to each move. Keep looping until someone wins
-    # or a tie is made.
+    current_player = @player1
+    $game_over = false
+    while $game_over == false
+      print "#{current_player} enter your move : "
+      current_move = gets.chomp
+      add(current_player, current_move)
+      $moves_played += 1 if $possible == true
+      if check == true
+        puts "congrats #{current_player}, you've won the game after #{$moves_played} moves"
+        break
+      elsif check == 'tie'
+        puts "game over, it's a tie!"
+        break
+      elsif $possible == true
+        puts 'great move!'
+      end
+      current_player = current_player == @player1 ? @player2 : @player1 if $possible == true
+    end
+    print 'would you like to play another game? (y/n) : '
+    answer = gets.chomp
+    answer == 'y' ? restart : (puts 'see you next time, goodbye!')
   end
 
+  private
+
   def add(player, move)
-    $moves[move] = 'X' if player == @player1
-    $moves[move] = 'O' if player == @player2
-    puts 'please enter a valid move' if player != @player1 && player != @player2
-    puts "here's your current board"
+    $possible = true
+    $possible = false if $moves[move] == 'X' || $moves[move] == 'O' || $moves.key?(move) == false
+    if $possible == true
+      $moves[move] = 'X' if player == @player1
+      $moves[move] = 'O' if player == @player2
+    end
+    puts "Here's your current board"
     puts '----------'
     puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
     puts '----------'
@@ -45,18 +74,27 @@ class Game
     puts '----------'
     puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
     puts '----------'
-    # return true or false if the game ends
+    puts 'Please enter a valid move' if $possible == false
   end
 
   def check
-    # this method checks the board each time we make a move.
+    win = [[$moves['a1'], $moves['a2'], $moves['a3']], [$moves['b1'], $moves['b2'], $moves['b3']], [$moves['c1'], $moves['c2'], $moves['c3']], [$moves['a1'], $moves['b1'], $moves['c1']], [$moves['a2'], $moves['b2'], $moves['c2']], [$moves['a3'], $moves['b3'], $moves['c3']], [$moves['a1'], $moves['b2'], $moves['c3']], [$moves['a3'], $moves['b2'], $moves['c1']]]
+    status = false
+    if $moves_played < 9
+      win.each do |k|
+        status = true if k.all? { |v| v == 'X' }
+        status = true if k.all? { |v| v == 'O' }
+      end
+    else
+      status = 'tie'
+    end
+    status
   end
 end
-# rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength
-puts 'Player1 enter your name: '
+# rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+print 'Player1 enter your name: '
 input1 = gets.chomp
-puts 'Player2 enter your name: '
+print 'Player2 enter your name: '
 input2 = gets.chomp
 
-new_game = Game.new(input1, input2)
-new_game.start
+Game.new(input1, input2)
