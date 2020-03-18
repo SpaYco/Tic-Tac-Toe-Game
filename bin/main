@@ -1,14 +1,16 @@
 #!/usr/bin/env ruby
-# rubocop:disable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength
+# rubocop:disable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
     start
   end
-  def restart 
+
+  def restart
     start
   end
+
   def start
     $moves = {
       'a1' => 'a1',
@@ -34,34 +36,33 @@ class Game
     puts '----------'
     current_player = @player1
     $game_over = false
-    while $game_over == false 
+    while $game_over == false
       print "#{current_player} enter your move : "
-      current_move = gets.chomp      
+      current_move = gets.chomp
       add(current_player, current_move)
-      current_check = check
       $moves_played += 1 if $possible == true
       if check == true
         puts "congrats #{current_player}, you've won the game after #{$moves_played} moves"
         break
-      elsif check == "tie"
+      elsif check == 'tie'
         puts "game over, it's a tie!"
         break
       else
-        puts "great move!"
+        puts 'great move!'
       end
-      current_player == @player1 ? current_player = @player2 : current_player = @player1 if $possible == true
+      current_player = current_player == @player1 ? @player2 : @player1 if $possible == true
     end
-    print "would you like to play another game? (y/n) : "
+    print 'would you like to play another game? (y/n) : '
     answer = gets.chomp
-    answer == "y" ? restart : (puts "see you next time, goodbye!")
+    answer == 'y' ? restart : (puts 'see you next time, goodbye!')
   end
 
   private
 
   def add(player, move)
     $possible = true
-    $possible = false if  $moves[move] == "X" || $moves[move] == "O"
-    if $possible == true 
+    $possible = false if $moves[move] == 'X' || $moves[move] == 'O'
+    if $possible == true
       $moves[move] = 'X' if player == @player1
       $moves[move] = 'O' if player == @player2
     end
@@ -77,25 +78,23 @@ class Game
   end
 
   def check
-    win = [[$moves['a1'],$moves['a2'],$moves['a3']], [$moves['b1'],$moves['b2'],$moves['b3']], [$moves['c1'],$moves['c2'],$moves['c3']], [$moves['a1'],$moves['b1'],$moves['c1']], [$moves['a2'],$moves['b2'],$moves['c2']], [$moves['a3'],$moves['b3'],$moves['c3']], [$moves['a1'],$moves['b2'],$moves['c3']], [$moves['a3'],$moves['b2'],$moves['c1']]]
+    win = [[$moves['a1'], $moves['a2'], $moves['a3']], [$moves['b1'], $moves['b2'], $moves['b3']], [$moves['c1'], $moves['c2'], $moves['c3']], [$moves['a1'], $moves['b1'], $moves['c1']], [$moves['a2'], $moves['b2'], $moves['c2']], [$moves['a3'], $moves['b3'], $moves['c3']], [$moves['a1'], $moves['b2'], $moves['c3']], [$moves['a3'], $moves['b2'], $moves['c1']]]
     status = false
     if $moves_played < 9
       win.each do |k|
-        status = true if k.all? {|v| v == "X"}
-        status = true if k.all? {|v| v == "O"}
+        status = true if k.all? { |v| v == 'X' }
+        status = true if k.all? { |v| v == 'O' }
       end
     else
-      status = "tie"
+      status = 'tie'
     end
-    return status
+    status
   end
 end
-# rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength
+# rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 puts 'Player1 enter your name: '
 input1 = gets.chomp
 puts 'Player2 enter your name: '
 input2 = gets.chomp
 
-new_game = Game.new(input1, input2)
-
-
+Game.new(input1, input2)
