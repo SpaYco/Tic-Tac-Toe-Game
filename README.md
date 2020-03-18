@@ -19,7 +19,7 @@ Clone the project unto your local machine cd to the folder and run "main" on you
 
 - You are X, your friend is O. Players take turns putting their marks in empty squares.
 
-- The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.
+- The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner.
 
 - When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.
 
@@ -37,12 +37,13 @@ Clone the project unto your local machine cd to the folder and run "main" on you
 - Github: [@SpaYco](https://github.com/SpaYco)
 - Twitter: [@iSpaYco](https://twitter.com/iSpaYco)
 - Linkedin: [Aziz Mejri](https://www.linkedin.com/in/spayco/)
+- Hackernoon: [@SpaYco](https://hackernoon.com/@SpaYco)
 
 👤 **Javier Oriol Correas Sanchez Cuesta**
 
 - Github: [@javitocor](https://github.com/javitocor)
 - Twitter: [@JavierCorreas4](https://twitter.com/JavierCorreas4)
-- Linkedin: [Javier Oriol Correas Sanchez Cuesta](https://www.linkedin.com/in/javier-correas-sanchez-cuesta-15289482/ )
+- Linkedin: [Javier Oriol Correas Sanchez Cuesta](https://www.linkedin.com/in/javier-correas-sanchez-cuesta-15289482/)
 
 # 🤝 Contributing
 Contributions, issues and feature requests are welcome! Start by:
