@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require './bin/main.rb'
 
 print 'Player1 enter your name: '.red.bg_gray
