@@ -8,4 +8,5 @@ print 'Player2 enter your name: '.blue.bg_gray
 input2 = gets.chomp
 sleep 0.35
 
-Game.new(input, input2)
+new_game = Game.new(input, input2)
+new_game.start
