@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# rubocop:disable Style/GlobalVars, Lint/ScriptPermission, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:disable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 class String
   def black
     "\e[30m#{self}\e[0m"
@@ -111,7 +111,7 @@ class Game
     puts "Welcome #{@player1} and #{@player2}"
     sleep 1.5
     puts "Let's start the game"
-    sleep 1.49
+    sleep 1.5
     puts "Here's your current board"
     sleep 0.15
     puts '----------'
@@ -207,4 +207,4 @@ class Game
   end
 end
 
-# rubocop:enable Style/GlobalVars, Lint/ScriptPermission, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
