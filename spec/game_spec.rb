@@ -4,7 +4,7 @@ require './bin/main.rb'
 
 RSpec.describe Game do
   describe '#cehcker' do
-    it "returns game still on if the game isn't finished" do
+    it "returns game still on if the game isn't finished." do
       checker_game_on = Game.new('SpaYco', 'Javier')
       expect(checker_game_on.method_checker_on).to eql('game still on')
     end

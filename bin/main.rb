@@ -169,7 +169,7 @@ class Game
     $moves['c1'] = 'O'.blue
     $moves['c2'] = 'O'.blue
     $moves['c3'] = 'X'.red
-    return 'tie' if check == 'tie'
+    'tie' if check == 'tie'
   end
 
   private
