@@ -89,14 +89,6 @@ class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
-    start
-  end
-
-  def restart
-    start
-  end
-
-  def start
     $moves = {
       'a1' => 'a1',
       'a2' => 'a2',
@@ -109,6 +101,13 @@ class Game
       'c3' => 'c3'
     }
     $moves_played = 0
+  end
+
+  def restart
+    start
+  end
+
+  def start
     puts "Welcome #{@player1} and #{@player2}"
     sleep 1.5
     puts "Let's start the game"
@@ -148,6 +147,31 @@ class Game
     answer == 'y' ? restart : (puts 'see you next time, goodbye!')
   end
 
+  def method_checker_on
+    return 'game still on' if $moves_played != 9 && check != true
+  end
+
+  def method_checker_won
+    $moves['a1'] = 'X'.red
+    $moves['a2'] = 'X'.red
+    $moves['a3'] = 'X'.red
+    return true if check
+  end
+
+  def method_checker_tie
+    $moves_played = 9
+    $moves['a1'] = 'O'.blue
+    $moves['a2'] = 'O'.blue
+    $moves['a3'] = 'X'.red
+    $moves['b1'] = 'X'.red
+    $moves['b2'] = 'X'.red
+    $moves['b3'] = 'O'.blue
+    $moves['c1'] = 'O'.blue
+    $moves['c2'] = 'O'.blue
+    $moves['c3'] = 'X'.red
+    return 'tie' if check == 'tie'
+  end
+
   private
 
   def add(player, move)
@@ -182,13 +206,5 @@ class Game
     status
   end
 end
-# rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-print 'Player1 enter your name: '.red.bg_gray
-input1 = gets.chomp
-sleep 0.35
-puts ''
-print 'Player2 enter your name: '.blue.bg_gray
-input2 = gets.chomp
-sleep 0.35
 
-Game.new(input1, input2)
+# rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
