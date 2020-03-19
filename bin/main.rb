@@ -111,7 +111,7 @@ class Game
     puts "Welcome #{@player1} and #{@player2}"
     sleep 1.5
     puts "Let's start the game"
-    sleep 1.5
+    sleep 1.49
     puts "Here's your current board"
     sleep 0.15
     puts '----------'
