@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# rubocop:disable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:disable Style/GlobalVars, Layout/LineLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 class String
   def black
     "\e[30m#{self}\e[0m"
@@ -109,6 +109,7 @@ class Game
   def restart(answer)
     answer == 'y' ? start : (p 'see you next time, goodbye!')
   end
+
   def board_reset(*silent)
     $moves_played = 0
     $moves = {
@@ -217,4 +218,4 @@ class Game
   end
 end
 
-# rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:enable Style/GlobalVars, Layout/LineLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity

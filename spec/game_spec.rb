@@ -8,7 +8,7 @@ RSpec.describe Game do
       checker_game_on = Game.new('SpaYco', 'Javier')
       expect(checker_game_on.method_checker_on).to eql('game still on')
     end
-    it "does not return tie if the game is still on" do
+    it 'does not return tie if the game is still on' do
       checker_game_on = Game.new('SpaYco', 'Javier')
       expect(checker_game_on.method_checker_on).not_to eql('tie')
     end
@@ -22,7 +22,7 @@ RSpec.describe Game do
       checker_game_won = Game.new('SpaYco', 'Javier')
       expect(checker_game_won.method_checker_won).not_to eql('game still on')
     end
-    it "does not return tie if the game is still on" do
+    it 'does not return tie if the game is still on' do
       checker_game_won = Game.new('SpaYco', 'Javier')
       expect(checker_game_won.method_checker_won).not_to eql('tie')
     end
@@ -36,7 +36,7 @@ RSpec.describe Game do
       checker_game_tie = Game.new('SpaYco', 'Javier')
       expect(checker_game_tie.method_checker_tie).not_to eql('game still on')
     end
-    it "returns tie if the game is still on" do
+    it 'returns tie if the game is still on' do
       checker_game_tie = Game.new('SpaYco', 'Javier')
       expect(checker_game_tie.method_checker_tie).to eql('tie')
     end
@@ -46,13 +46,13 @@ RSpec.describe Game do
     end
   end
   describe '#restart' do
-    it "stop the game when asked not to continue" do
+    it 'stop the game when asked not to continue' do
       game_restart = Game.new('SpaYco', 'Javier')
       expect(game_restart.restart('n')).to eql('see you next time, goodbye!')
     end
   end
-  describe '#board_reset' do 
-    it "resets the board" do
+  describe '#board_reset' do
+    it 'resets the board' do
       game_reset = Game.new('SpaYco', 'Javier')
       expect(game_reset.board_reset).to eql('board reset successfully')
     end
@@ -60,11 +60,11 @@ RSpec.describe Game do
 end
 
 RSpec.describe Board do
-  describe "#show" do
-    board = Game.new("SpaYco", "Javier")
+  describe '#show' do
+    board = Game.new('SpaYco', 'Javier')
     board.board_reset(true)
-    board_new = Board.new    
-    it "returns the board " do
+    board_new = Board.new
+    it 'returns the board ' do
       expect(board_new.show).to eql("Here's your current board")
     end
   end
