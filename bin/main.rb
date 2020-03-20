@@ -85,10 +85,32 @@ class String
     "\e[7m#{self}\e[27m"
   end
 end
+class Board
+  def show
+    puts "Here's your current board"
+    sleep 0.15
+    puts '----------'
+    puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
+    puts '----------'
+    puts "|#{$moves['b1']}|#{$moves['b2']}|#{$moves['b3']}|"
+    puts '----------'
+    puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
+    puts '----------'
+  end
+end
 class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    sleep 1.5
+    puts "Welcome #{@player1} and #{@player2}"
+  end
+
+  def restart(answer)
+    answer == 'y' ? start : (p 'see you next time, goodbye!')
+  end
+  def board_reset(*silent)
+    $moves_played = 0
     $moves = {
       'a1' => 'a1',
       'a2' => 'a2',
@@ -100,58 +122,29 @@ class Game
       'c2' => 'c2',
       'c3' => 'c3'
     }
-    $moves_played = 0
-  end
-
-  def restart
-    start
+    p 'board reset successfully' if silent[0] != true
   end
 
   def start
-    puts "Welcome #{@player1} and #{@player2}"
-    sleep 1.5
     puts "Let's start the game"
+    board_reset(true)
     sleep 1.5
-    puts "Here's your current board"
-    sleep 0.15
-    puts '----------'
-    puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
-    puts '----------'
-    puts "|#{$moves['b1']}|#{$moves['b2']}|#{$moves['b3']}|"
-    puts '----------'
-    puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
-    puts '----------'
+    $game_board = Board.new
+    $game_board.show
     sleep 1.5
-    current_player = @player1
-    $game_over = false
-    while $game_over == false
-      print "#{current_player} enter your move : "
-      current_move = gets.chomp
-      sleep 1
-      add(current_player, current_move)
-      $moves_played += 1 if $possible == true
-      sleep 0.35
-      if check == true
-        puts "congrats #{current_player}, you've won the game after #{$moves_played} moves".green.bg_gray
-        break
-      elsif check == 'tie'
-        puts "game over, it's a tie!"
-        break
-      elsif $possible == true
-        puts 'great move!'.reverse_color
-      end
-      current_player = current_player == @player1 ? @player2 : @player1 if $possible == true
-    end
+    turns
     print 'would you like to play another game? (y/n) : '
     answer = gets.chomp
-    answer == 'y' ? restart : (puts 'see you next time, goodbye!')
+    restart(answer)
   end
 
   def method_checker_on
+    board_reset(true)
     return 'game still on' if $moves_played != 9 && check != true
   end
 
   def method_checker_won
+    board_reset(true)
     $moves['a1'] = 'X'.red
     $moves['a2'] = 'X'.red
     $moves['a3'] = 'X'.red
@@ -159,6 +152,7 @@ class Game
   end
 
   def method_checker_tie
+    board_reset(true)
     $moves_played = 9
     $moves['a1'] = 'O'.blue
     $moves['a2'] = 'O'.blue
@@ -174,6 +168,29 @@ class Game
 
   private
 
+  def turns
+    $current_player = @player1
+    $game_over = false
+    while $game_over == false
+      print "#{$current_player} enter your move : "
+      current_move = gets.chomp
+      sleep 1
+      add($current_player, current_move)
+      $moves_played += 1 if $possible == true
+      sleep 0.35
+      if check == true
+        puts "congrats #{$current_player}, you've won the game after #{$moves_played} moves".green.bg_gray
+        break
+      elsif check == 'tie'
+        puts "game over, it's a tie!"
+        break
+      elsif $possible == true
+        puts 'great move!'.reverse_color
+      end
+      $current_player = $current_player == @player1 ? @player2 : @player1 if $possible == true
+    end
+  end
+
   def add(player, move)
     $possible = true
     $possible = false if $moves[move] == 'X'.red || $moves[move] == 'O'.blue || $moves.key?(move) == false
@@ -181,14 +198,7 @@ class Game
       $moves[move] = 'X'.red if player == @player1
       $moves[move] = 'O'.blue if player == @player2
     end
-    puts "Here's your current board"
-    puts '----------'
-    puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
-    puts '----------'
-    puts "|#{$moves['b1']}|#{$moves['b2']}|#{$moves['b3']}|"
-    puts '----------'
-    puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
-    puts '----------'
+    $game_board.show
     puts 'Please enter a valid move'.red.bg_gray.bold if $possible == false
   end
 
