@@ -87,7 +87,6 @@ class String
 end
 class Board
   def show
-    puts "Here's your current board"
     sleep 0.15
     puts '----------'
     puts "|#{$moves['a1']}|#{$moves['a2']}|#{$moves['a3']}|"
@@ -96,6 +95,7 @@ class Board
     puts '----------'
     puts "|#{$moves['c1']}|#{$moves['c2']}|#{$moves['c3']}|"
     puts '----------'
+    p "Here's your current board"
   end
 end
 class Game

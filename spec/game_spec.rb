@@ -1,4 +1,4 @@
-# spec/enumerable_spec.rb
+# spec/main.rb
 
 require './bin/main.rb'
 
@@ -55,6 +55,17 @@ RSpec.describe Game do
     it "resets the board" do
       game_reset = Game.new('SpaYco', 'Javier')
       expect(game_reset.board_reset).to eql('board reset successfully')
+    end
+  end
+end
+
+RSpec.describe Board do
+  describe "#show" do
+    board = Game.new("SpaYco", "Javier")
+    board.board_reset(true)
+    board_new = Board.new    
+    it "returns the board " do
+      expect(board_new.show).to eql("Here's your current board")
     end
   end
 end
