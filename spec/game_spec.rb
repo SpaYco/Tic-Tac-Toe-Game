@@ -50,7 +50,7 @@ RSpec.describe Game do
 end
 
 RSpec.describe Board do
-  let(:board){Board.new}
+  let(:board) { Board.new }
   describe '#show' do
     it 'returns the board ' do
       expect(board.show).to eql("Here's your current board")
