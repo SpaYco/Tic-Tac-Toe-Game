@@ -28,7 +28,7 @@ Clone the project unto your local machine cd to the folder and run "start_game.r
 
 # Install
 - Install VSCode or any code editor you like
-- Install Node JS and nmp(most recents versions)
+- Install Node JS and NPM(most recent versions)
 
 ## Authors
 
@@ -46,7 +46,7 @@ Clone the project unto your local machine cd to the folder and run "start_game.r
 - Linkedin: [Javier Oriol Correas Sanchez Cuesta](https://www.linkedin.com/in/javier-correas-sanchez-cuesta-15289482/)
 
 # 🤝 Contributing
-Contributions, issues and feature requests are welcome! Start by:
+Contributions, issues, and feature requests are welcome! Start by:
 
 - Forking the project
 - Cloning the project to your local machine
@@ -54,7 +54,7 @@ Contributions, issues and feature requests are welcome! Start by:
 - Run git checkout -b your-branch-name
 - Make your contributions
 - Push your branch up to your forked repository
-- Open a Pull Request with a detailed description to the development branch of the original project for a review
+- Open a Pull Request with a detailed description of the development branch of the original project for a review
 
 # Attributions and Credit
 🚀
